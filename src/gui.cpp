@@ -4,6 +4,7 @@
 #include "resource.h"
 #include <shlobj.h>
 #include <commdlg.h>
+#include <commctrl.h>
 #include <string>
 
 static std::string Narrow(const wchar_t* w){std::string s;while(*w){s.push_back((char)*w++);}return s;}
