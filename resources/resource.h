@@ -1,6 +1,3 @@
-#ifndef RESOURCE_H
-#define RESOURCE_H
-
-#define IDI_APP 101
-
-#endif // RESOURCE_H
+#define IDD_PASSWORD_DIALOG      100
+#define IDC_EDIT_PASSWORD        101
+#define IDI_APP                  IDI_APPLICATION
