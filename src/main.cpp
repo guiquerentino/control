@@ -1,2 +1,2 @@
 #include "gui.h"
-int APIENTRY wWinMain(HINSTANCE h,HINSTANCE,LPWSTR,int){App a;return a.Run(h);} 
+int APIENTRY WinMain(HINSTANCE h,HINSTANCE,LPSTR,int){App a;return a.Run(h);}
