@@ -19,4 +19,4 @@ O arquivo de configuração será salvo em `%APPDATA%\control.ini`.
 
 ## Uso
 
-Execute o programa. A janela lista as regras. Use o botão **Pause** para pausar ou retomar os bloqueios inserindo a senha configurada no arquivo.
+Execute o programa. A janela lista as regras. Utilize os botões **Pause** e **Resume** para alternar os bloqueios. No primeiro acesso será solicitado que você defina uma senha. Ela é armazenada de forma criptografada no `control.ini` e pode ser modificada usando **Change Password**.
