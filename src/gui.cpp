@@ -4,6 +4,7 @@
 #include "resource.h"
 #include <shlobj.h>
 #include <commdlg.h>
+#include <commctrl.h>
 #include <string>
 
 static std::string Narrow(const wchar_t* w){std::string s;while(*w){s.push_back((char)*w++);}return s;}
@@ -74,8 +75,9 @@ void App::CreateUI(){
     CreateWindowW(L"BUTTON",L"Resume",WS_CHILD|WS_VISIBLE,120,230,100,30,hwnd,(HMENU)3,GetModuleHandleW(nullptr),nullptr);
     CreateWindowW(L"BUTTON",L"Change Password",WS_CHILD|WS_VISIBLE,230,230,150,30,hwnd,(HMENU)4,GetModuleHandleW(nullptr),nullptr);
     CreateWindowW(L"BUTTON",L"Add App",WS_CHILD|WS_VISIBLE,10,270,100,30,hwnd,(HMENU)5,GetModuleHandleW(nullptr),nullptr);
-    CreateWindowW(L"LISTBOX",nullptr,WS_CHILD|WS_VISIBLE|LBS_NOTIFY|WS_VSCROLL,10,10,410,200,hwnd,(HMENU)2,GetModuleHandleW(nullptr),nullptr);
-    for(int id=1;id<=5;++id)SendMessageW(GetDlgItem(hwnd,id),WM_SETFONT,(WPARAM)font,TRUE);
+    CreateWindowExW(WS_EX_CLIENTEDGE,L"LISTBOX",nullptr,WS_CHILD|WS_VISIBLE|LBS_NOTIFY|WS_VSCROLL,10,10,410,200,hwnd,(HMENU)2,GetModuleHandleW(nullptr),nullptr);
+    CreateWindowW(L"STATIC",L"Criado por Guilherme Querentino",WS_CHILD|WS_VISIBLE|SS_CENTER,120,310,220,20,hwnd,(HMENU)6,GetModuleHandleW(nullptr),nullptr);
+    for(int id=1;id<=6;++id)SendMessageW(GetDlgItem(hwnd,id),WM_SETFONT,(WPARAM)font,TRUE);
     ShowWindow(hwnd,SW_SHOW);
     UpdateButtons();
 }
@@ -156,4 +158,20 @@ LRESULT CALLBACK App::WndProc(HWND h,UINT m,WPARAM w,LPARAM l){
     }
     return 0;
 }
-int App::Run(HINSTANCE h){Load();WNDCLASSW wc{};wc.lpfnWndProc=WndProc;wc.hInstance=h;wc.lpszClassName=L"ControlWnd";RegisterClassW(&wc);CreateUI();SetTimer(hwnd,1,60000,nullptr);UpdateList();MSG msg;while(GetMessageW(&msg,nullptr,0,0)){TranslateMessage(&msg);DispatchMessageW(&msg);}Save();return 0;} 
+int App::Run(HINSTANCE h){
+    INITCOMMONCONTROLSEX icc{sizeof(icc),ICC_STANDARD_CLASSES};
+    InitCommonControlsEx(&icc);
+    Load();
+    WNDCLASSW wc{};wc.lpfnWndProc=WndProc;wc.hInstance=h;wc.lpszClassName=L"ControlWnd";
+    RegisterClassW(&wc);
+    CreateUI();
+    SetTimer(hwnd,1,60000,nullptr);
+    UpdateList();
+    MSG msg;
+    while(GetMessageW(&msg,nullptr,0,0)){
+        TranslateMessage(&msg);
+        DispatchMessageW(&msg);
+    }
+    Save();
+    return 0;
+}
