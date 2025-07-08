@@ -4,20 +4,18 @@ Aplicativo para Windows que permite bloquear aplicativos e sites em horários de
 
 ## Build
 
-Requer MSVC ou MinGW. Compile todos os arquivos em `src` e o recurso em `resources/resource.rc`.
+Agora o projeto pode ser compilado com **CMake** usando MSVC ou MinGW.
 
-### MSVC
-```
-cl /EHsc /DUNICODE /D_UNICODE src/*.cpp resources/resource.rc user32.lib shell32.lib comctl32.lib
-```
-
-### MinGW
-```
-windres resources/resource.rc resource.o
-g++ -municode src/*.cpp resource.o -lole32 -lshlwapi -lcomctl32 -static -o control.exe
+```bash
+mkdir build
+cd build
+cmake ..
+cmake --build .
 ```
 
-O arquivo de configuraçao será salvo em `%APPDATA%\control.ini`.
+O executável `control.exe` será criado dentro da pasta `build`.
+
+O arquivo de configuração será salvo em `%APPDATA%\control.ini`.
 
 ## Uso
 
