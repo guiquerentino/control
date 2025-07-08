@@ -12,7 +12,7 @@ set(SOURCES
 
 add_executable(control WIN32 ${SOURCES})
 
-target_include_directories(control PRIVATE src)
+target_include_directories(control PRIVATE src resources)
 
 target_compile_definitions(control PRIVATE UNICODE _UNICODE)
 
