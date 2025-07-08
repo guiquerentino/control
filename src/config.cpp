@@ -1,8 +1,10 @@
 #include "config.h"
 #include <fstream>
 #include <sstream>
+
+static std::string Narrow(const std::wstring& w){return std::string(w.begin(),w.end());}
 bool LoadConfig(const std::wstring& path, Config& cfg) {
-    std::wifstream f(path);
+    std::wifstream f(Narrow(path).c_str());
     if (!f.is_open()) return false;
     std::wstring line;
     Rule r;
@@ -35,7 +37,7 @@ bool LoadConfig(const std::wstring& path, Config& cfg) {
     return true;
 }
 bool SaveConfig(const std::wstring& path, const Config& cfg) {
-    std::wofstream f(path);
+    std::wofstream f(Narrow(path).c_str());
     if (!f.is_open()) return false;
     f<<L"password="<<std::wstring(cfg.password.begin(),cfg.password.end())<<L"\n";
     for (const auto& r:cfg.rules) {
