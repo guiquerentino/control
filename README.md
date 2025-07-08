@@ -19,4 +19,4 @@ O arquivo de configuração será salvo em `%APPDATA%\control.ini`.
 
 ## Uso
 
-Execute o programa. A janela lista as regras. Utilize os botões **Pause** e **Resume** para alternar os bloqueios. No primeiro acesso será solicitado que você defina uma senha. Ela é armazenada de forma criptografada no `control.ini` e pode ser modificada usando **Change Password**.
+Execute o programa. A janela lista as regras. No primeiro acesso o aplicativo solicitará o cadastro de uma senha, que fica salva de forma criptografada no `control.ini`. Utilize os botões **Pause** e **Resume** para alternar os bloqueios. Também é possível incluir novos aplicativos através do botão **Add App**, que abre o Explorador de Arquivos para escolher o executável. A senha pode ser modificada usando **Change Password**.
